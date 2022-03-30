@@ -126,8 +126,8 @@ const plugin = function(schema, options) {
                                 resolve(true);
                             } else {
                                 model.find(conditions).countDocuments((err, count) => {
-                                    if(err && err.code === 31122) {
-                                        // mongodb-client-encryption realated error, in config, not resolve(true) this error will be not promoted to the Application
+                                    if(err) {
+                                        // error should not be handel by this moduel and pathed throug to the app. e.g. mongodb-client-encryption realated errors in config
                                         resolve(true)
                                     }
                                     resolve(count === 0);
